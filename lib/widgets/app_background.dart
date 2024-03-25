@@ -11,9 +11,9 @@ class AppBackground extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
-        Color.fromARGB(255, 8, 0, 23),
-        Color.fromARGB(255, 15, 15, 164)
-      ], begin: Alignment.topLeft, end: Alignment.centerRight)),
+        Color.fromARGB(242, 8, 0, 23),
+        Color.fromARGB(255, 236, 29, 40)
+      ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
       child: child,
     );
   }

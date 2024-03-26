@@ -1,13 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movie_trivia/data/trivia_data.dart';
+//import 'package:movie_trivia/models/trivia_model.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.onRestartQuiz});
+  const ResultsScreen(
+      {super.key,
+      required this.onRestartQuiz,
+      required this.onCheckResults,
+      required this.selectedAnswerz});
 
   final void Function() onRestartQuiz;
+  final void Function() onCheckResults;
+
+  final List<String> selectedAnswerz;
+
+  List<Map<String, Object>> getSummaryDataOfAnswers() {
+    final List<Map<String, Object>> summaryDataOfAnswersList = [];
+
+    for (var i = 0; i < selectedAnswerz.length; i++) {
+      summaryDataOfAnswersList.add({
+        'question_index': i,
+        'question': triviaQuestions[i].question,
+        'correct_answer': triviaQuestions[i].multipleAnswers[0],
+        'selected_answer': selectedAnswerz[i],
+        'no_of_questions': selectedAnswerz.length
+      });
+    }
+
+    return summaryDataOfAnswersList;
+  }
 
   @override
   Widget build(BuildContext context) {
+    final summaryDataOfAnswers = getSummaryDataOfAnswers();
+    final noOfQuestions = selectedAnswerz.length;
+    final noOfCorrectlyAnswered = summaryDataOfAnswers.where(
+      (element) {
+        return element['selected_answer'] == element['correct_answer'];
+      },
+    ).length;
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -38,7 +70,7 @@ class ResultsScreen extends StatelessWidget {
                 height: 30,
               ),
               Text(
-                'You answered X out of Y questions',
+                'You answered $noOfCorrectlyAnswered out of $noOfQuestions questions',
                 style: GoogleFonts.quicksand(
                     fontSize: 24,
                     fontWeight: FontWeight.w700,
@@ -48,7 +80,7 @@ class ResultsScreen extends StatelessWidget {
                 height: 30,
               ),
               ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: onCheckResults,
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 28, 110, 3),
                       padding: const EdgeInsets.symmetric(

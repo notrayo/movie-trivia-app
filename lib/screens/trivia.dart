@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_trivia/data/trivia_data.dart';
 import 'package:movie_trivia/screens/home.dart';
+import 'package:movie_trivia/screens/listed_results.dart';
 import 'package:movie_trivia/screens/questions.dart';
 import 'package:movie_trivia/screens/results.dart';
-import 'package:movie_trivia/widgets/app_background.dart';
+//import 'package:movie_trivia/widgets/app_background.dart';
 
 class TriviaApp extends StatefulWidget {
   const TriviaApp({super.key});
@@ -45,6 +46,8 @@ class _TriviaAppState extends State<TriviaApp> {
       setState(() {
         activeScreen = ResultsScreen(
           onRestartQuiz: restartQuiz,
+          onCheckResults: checkResults,
+          selectedAnswerz: selectedAnswers,
         );
       });
 
@@ -59,6 +62,16 @@ class _TriviaAppState extends State<TriviaApp> {
       activeScreen = HomeScreen(beginQuiz: switchScreen);
     });
   }
+
+  //check results
+
+  void checkResults() {
+    setState(() {
+      activeScreen = ListedResultsScreen();
+    });
+  }
+
+  //back to results screen
 
   @override
   Widget build(BuildContext context) {

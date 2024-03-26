@@ -1,3 +1,5 @@
+import '../screens/trivia.dart';
+
 class TriviaQuestion {
   const TriviaQuestion(this.question, this.multipleAnswers);
 

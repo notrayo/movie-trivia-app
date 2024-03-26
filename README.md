@@ -1,16 +1,20 @@
-# movie_trivia
+# Movie Trivia App
 
-A new Flutter project.
+A fun little app where I test my friends film knowledge. More questions will be added over time
 
-## Getting Started
+## Screenshots
 
-This project is a starting point for a Flutter application.
+###  1. Home Screen
 
-A few resources to get you started if this is your first Flutter project:
+![screenshot 1](https://github.com/notrayo/movie-trivia-app/blob/main/assets/screenshots/Screenshot%20from%202024-03-26%2016-48-57.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 2. Trivia Questions Sample
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![screenshot 2](https://github.com/notrayo/movie-trivia-app/blob/main/assets/screenshots/Screenshot%20from%202024-03-26%2016-49-12.png)
+
+![screenshot 3](https://github.com/notrayo/movie-trivia-app/blob/main/assets/screenshots/Screenshot%20from%202024-03-26%2016-49-29.png)
+
+### 3. Results Screen
+
+![screenshot 4](https://github.com/notrayo/movie-trivia-app/blob/main/assets/screenshots/Screenshot%20from%202024-03-26%2016-50-46.png)
+

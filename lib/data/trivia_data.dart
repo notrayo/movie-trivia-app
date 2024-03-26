@@ -34,10 +34,10 @@ const triviaQuestions = [
   TriviaQuestion(
       'Which year did the First Star wars Film (A new Hope) Premier?',
       ['1977', '1968', '1993', '2001', '1985']),
-  TriviaQuestion('Which Film was directed by Sanley Kubrick ?', [
+  TriviaQuestion('Which Film was directed by Stanley Kubrick ?', [
     '2001 A space odyssey',
     'Vertigo',
-    'The Good Bad and Ugly',
+    'The Good, The Bad and The Ugly',
     'Taxi Driver',
     'Rocky'
   ]),

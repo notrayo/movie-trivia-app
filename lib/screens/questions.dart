@@ -6,7 +6,9 @@ import 'package:movie_trivia/widgets/app_background.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen({super.key, required this.onSelectedAnswer});
+
+  final void Function(String answer) onSelectedAnswer;
 
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
@@ -15,10 +17,12 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQuestionIndex = 0;
 
-  void nextQuestion() {
+  void nextQuestion(String selectedAnswer) {
     setState(() {
       currentQuestionIndex += 1;
     });
+
+    widget.onSelectedAnswer(selectedAnswer);
   }
 
   @override
@@ -40,38 +44,53 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             const SizedBox(
               height: 30,
             ),
-            AnswerButton(
-              onPress: nextQuestion,
-              answerOption: currentQuestion.multipleAnswers[0],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            AnswerButton(
-              onPress: () {},
-              answerOption: currentQuestion.multipleAnswers[1],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            AnswerButton(
-              onPress: () {},
-              answerOption: currentQuestion.multipleAnswers[2],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            AnswerButton(
-              onPress: () {},
-              answerOption: currentQuestion.multipleAnswers[3],
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            AnswerButton(
-              onPress: () {},
-              answerOption: currentQuestion.multipleAnswers[4],
-            )
+            // AnswerButton(
+            //   onPress: nextQuestion,
+            //   answerOption: currentQuestion.multipleAnswers[0],
+            // ),
+            // const SizedBox(
+            //   height: 30,
+            // ),
+            // AnswerButton(
+            //   onPress: () {},
+            //   answerOption: currentQuestion.multipleAnswers[1],
+            // ),
+            // const SizedBox(
+            //   height: 30,
+            // ),
+            // AnswerButton(
+            //   onPress: () {},
+            //   answerOption: currentQuestion.multipleAnswers[2],
+            // ),
+            // const SizedBox(
+            //   height: 30,
+            // ),
+            // AnswerButton(
+            //   onPress: () {},
+            //   answerOption: currentQuestion.multipleAnswers[3],
+            // ),
+            // const SizedBox(
+            //   height: 30,
+            // ),
+            // AnswerButton(
+            //   onPress: () {},
+            //   answerOption: currentQuestion.multipleAnswers[4],
+            // )
+
+            ...currentQuestion.getShuffledAnswers().map((e) {
+              return Column(
+                children: [
+                  AnswerButton(
+                      onPress: () {
+                        nextQuestion(e);
+                      },
+                      answerOption: e),
+                  const SizedBox(
+                    height: 30,
+                  )
+                ],
+              );
+            })
           ],
         ),
       ),

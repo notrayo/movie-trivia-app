@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_trivia/data/trivia_data.dart';
 import 'package:movie_trivia/screens/home.dart';
 import 'package:movie_trivia/screens/questions.dart';
+import 'package:movie_trivia/screens/results.dart';
 import 'package:movie_trivia/widgets/app_background.dart';
 
 class TriviaApp extends StatefulWidget {
@@ -12,6 +14,8 @@ class TriviaApp extends StatefulWidget {
 
 class _TriviaAppState extends State<TriviaApp> {
   late Widget activeScreen;
+
+  List<String> selectedAnswers = [];
 
   @override
   void initState() {
@@ -26,7 +30,33 @@ class _TriviaAppState extends State<TriviaApp> {
 
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = QuestionsScreen(
+        onSelectedAnswer: chosenAnswer,
+      );
+    });
+  }
+
+  //chosen answers function
+
+  void chosenAnswer(String answer) {
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == triviaQuestions.length) {
+      setState(() {
+        activeScreen = ResultsScreen(
+          onRestartQuiz: restartQuiz,
+        );
+      });
+
+      selectedAnswers = [];
+    }
+  }
+
+  //restart quiz
+
+  void restartQuiz() {
+    setState(() {
+      activeScreen = HomeScreen(beginQuiz: switchScreen);
     });
   }
 
